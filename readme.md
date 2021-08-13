@@ -14,9 +14,11 @@ Support **androidx**
 - 项目中有较多的web与native交互，需要native统一提供对外api
 - native组件化，需要在不同模块中实现api逻辑
 
-### 添加依赖
+### 添加依赖  [![](https://jitpack.io/v/bill556/JsBridge.svg)](https://jitpack.io/#bill556/JsBridge)
 ```groovy
-本地Library JsBridge
+maven { url "https://jitpack.io" }
+
+implementation 'com.github.bill556:JsBridge:1.0.0'
 ```
 
 #### 需要修改的类

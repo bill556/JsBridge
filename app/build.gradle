@@ -18,7 +18,8 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation project(':JsBridge')
+    //implementation project(':JsBridge')
+    implementation 'com.github.bill556:JsBridge:1.0.0'
 
     implementation deps.android.recyclerview
     implementation deps.android.appcompat
