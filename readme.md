@@ -5,16 +5,16 @@ JsBridge
 Support **API v19+**  
 Support **androidx**
 
-## JsBridge能做什么
+#### JsBridge能做什么
 - 对web端提供js-sdk，形成sdk概念，统一app对外api，统一的api管理（权限、版本兼容）
 - 让native端api具备组件化能力，不在需要将所有api写个一个modlue中
 - 保障native-web js交互的数据一致性、安全
 
-## 什么场景下需要使用JsBridge
+#### 什么场景下需要使用JsBridge
 - 项目中有较多的web与native交互，需要native统一提供对外api
 - native组件化，需要在不同模块中实现api逻辑
 
-### 添加依赖  [![](https://jitpack.io/v/bill556/JsBridge.svg)](https://jitpack.io/#bill556/JsBridge)
+#### 添加依赖  [![](https://jitpack.io/v/bill556/JsBridge.svg)](https://jitpack.io/#bill556/JsBridge)
 ```groovy
 maven { url "https://jitpack.io" }
 
@@ -28,7 +28,7 @@ implementation 'com.github.bill556:JsBridge:1.0.0'
     - 注册api实现类
     - 添加一些方法，协助js感知容器生命周期
 
-##### WebView implements IWebView
+#### WebView implements IWebView
 ```kotlin
 class WebView : WebView, IZWebView {
     
@@ -72,12 +72,12 @@ class WebView : WebView, IZWebView {
 }
 ```
 
-##### Webview addJavascriptInterface
+#### Webview addJavascriptInterface
 ```kotlin
 addJavascriptInterface(JavascriptInterface(this), JavascriptInterface.INTERFACE_NAME)
 ```
 
-##### WebViewClient
+#### WebViewClient
 ```kotlin
 private inner class InnerCustomWebViewClient : WebViewClient() {
     override fun onPageFinished(webView: WebView?, s: String?) {
@@ -92,13 +92,13 @@ private inner class InnerCustomWebViewClient : WebViewClient() {
 }
 ```
 
-##### registeredJsApiHandler
+#### registeredJsApiHandler
 ```kotlin
 web_test.getCurWebHelper().registeredJsApiHandler(this, CommonJsHandler::class.java)
 web_test.getCurWebHelper().registeredJsApiHandler(this, ImageJsHandler::class.java)
 ```
 
-##### activity|fragment容器 implements IWebViewContainer
+#### activity|fragment容器 implements IWebViewContainer
 ```kotlin
 override fun closeWindow() {
     finish()
