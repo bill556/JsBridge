@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+</head>
+<script src=js/sinojs-sdk.js></script>
+<body>
+<button onclick="toPhotos()">测试SDK选择相册（有回调）</button>
+<button onclick="toTitle()">测试SDK设置Title（无回调）</button>
+<img width="130" height="130" id="preview" src=""/>
+</body>
+<script>
+    function toPhotos() {
+        sino.choosePhotos({
+                enableCount: 3, //可选择数量，0<enableCount<=9
+                success(ret) {
+                        console.log(ret)
+                        let result = ret.result; //[{nativeResourceUrl:"",name:"",size:0}]
+                        result.forEach(element => {
+                            let nativeResourceUrl = element.nativeResourceUrl; //图片本地地址，可以直接指定为image标签src
+                            let name = element.name; //名称
+                            let size = element.size; //文件大小
+
+                            var img = document.getElementById("preview");
+                            img.src = nativeResourceUrl;
+                        });
+                },
+                fail(ret) {
+                    console.log(ret)
+                },
+                cancel() {
+                    console.log("用户取消了选择")
+                },
+                complete() {
+                    console.log("用户选择相册完成")
+                }
+        });
+   }
+   function toTitle() {
+        sino.setTitle({
+            title:"这里是title内容",
+            success(ret) {
+                    console.log(ret)
+                    console.log("完成")
+                },
+                fail(ret) {
+                    console.log(ret)
+                    console.log("失败")
+                },
+                cancel() {
+                    console.log("用户取消了选择")
+                },
+                complete() {
+                    console.log("用户选择相册完成")
+                }
+        })
+   }
+
+</script>
+</html>
