@@ -9,7 +9,7 @@ def build = [
         minSdkVersion    : 21,
         compileSdkVersion: 28,
         targetSdkVersion : 28,
-        androidPlugin    : "com.android.tools.build:gradle:4.0.1",
+        androidPlugin    : "com.android.tools.build:gradle:3.5.2",
 ]
 
 def gradleConfig = [
