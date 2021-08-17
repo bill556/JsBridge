@@ -58,8 +58,7 @@ class JsCallBacker(
 
                 val jsonMessageBase64 = Utils.base64Encode(jsonMessage.toString())
 
-                val shaKey =
-                    Utils.signatureSHA1("$jsonMessageBase64${izWebView.getCurWebHelper().dgtVerifyRandomStr}")
+                val shaKey = Utils.signatureSHA1("$jsonMessageBase64${izWebView.getCurWebHelper().dgtVerifyRandomStr}")
 
                 val toBridgeRet = JSONObject()
                 toBridgeRet.put("jsonMessage", jsonMessageBase64)
