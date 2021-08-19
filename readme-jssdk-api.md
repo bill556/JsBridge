@@ -1,22 +1,16 @@
-# sino-sdk说明文档
-
 ------
-
-
-
-[TOC]
 
 ## jssdk使用步骤
 
 ------
 
-#### **引入js**
+#### 引入js
 
 在需要调用JS接口的页面引入JS文件 **sinojs-sdk.js**
 
 支持使用 AMD/CMD 标准模块加载方法加载
 
-#### **接口调用说明**
+#### 接口调用说明
 所有接口通过sino对象来调用，参数是一个对象，除了每个接口本身需要传的参数之外，还有以下通用参数：
 
 success： 	 接口调用成功时执行的回调函数。  
@@ -30,7 +24,7 @@ cancel：		用户点击取消时的回调函数，仅部分有用户取消操作
 }```  
 其中errCode为必有的integer字段，含义参照错误码,errMsg为调用失败的具体描述
 
-#### **错误码**
+#### 错误码
 
 | errCode | 含义                         |
 | ------- | ---------------------------- |
@@ -41,7 +35,7 @@ cancel：		用户点击取消时的回调函数，仅部分有用户取消操作
 | 403     | 没有该方法的调用权限         |
 | 404     | 请求的方法或者事件名没有找到 |
 
-#### **如何判断是否运行在sinojs app环境中**
+#### 如何判断是否运行在sinojs app环境中
 
 ```
 let match = 
@@ -54,11 +48,9 @@ let vCode = match && match[1]
 
 
 
-## **基础接口**
+## 基础接口
 
-------
-
-#### **check容器后台前台切换**
+#### check容器后台前台切换
 
 ```
 window.sino.onContainerResume(ret => {
@@ -75,19 +67,19 @@ window.sino.onContainerPause(ret => {
 
 ------
 
-#### **设置浏览器标题文字**
+#### 设置浏览器标题文字
 ```
 sino.setTitle({
     title: "test title" //标题
 });
 ```
 
-#### **退出容器**
+#### 退出容器
 ```
 sino.closeWindow({});
 ```
 
-#### TODO   **键值对存储-存**
+#### TODO   键值对存储-存
 ```
 sino.putLocalStorageKV({
     key:""      //键
@@ -95,7 +87,7 @@ sino.putLocalStorageKV({
 });
 ```
 
-#### TODO   **键值对存储-读**
+#### TODO   键值对存储-读
 ```
 sino.getLocalStorageKV({
     key:"",             //键
@@ -113,7 +105,7 @@ sino.getLocalStorageKV({
 
 ------
 
-#### **选择图片**
+#### 选择图片
 ```
 sino.choosePhotos({
     enableCount: 3, //可选择数量，0<enableCount<=9
@@ -128,7 +120,7 @@ sino.choosePhotos({
 });
 ```
 
-#### TODO   **上传图片**
+#### TODO   上传图片
 ```
 sino.uploadPhotos({
     nativeResourceUrls: [""], //choosePhotos获取到的
@@ -142,7 +134,7 @@ sino.uploadPhotos({
 });
 ```
 
-#### TODO   **预览图片**
+#### TODO   预览图片
 ```
 sino.previewPhotos({
     urls: ["", ""], //可以为nativeResourceUrl
@@ -157,7 +149,7 @@ sino.previewPhotos({
 
 ------
 
-#### TODO   **选择视频**
+#### TODO   选择视频**
 ```
 sino.chooseVideos({
     enableCount: 3, //可选择数量,0<enableCount<=3
@@ -173,7 +165,7 @@ sino.chooseVideos({
 });
 ```
 
-#### TODO   **上传视频**
+#### TODO   上传视频
 ```
 sino.uploadVideos({
     nativeResourceUrls: [""], //chooseVideos获取到的
@@ -187,7 +179,7 @@ sino.uploadVideos({
 });
 ```
 
-#### TODO   **预览视频**
+#### TODO   预览视频
 ```
 sino.previewVideo({
     url: "", //可以为nativeResourceUrl
@@ -201,7 +193,7 @@ sino.previewVideo({
 
 ------
 
-#### TODO   **选择文件**
+#### TODO   选择文件
 ```
 sino.chooseFile({
     enableCount: 3, //可选择数量，0<enableCount<=9，在多选时才处理-iOS不支持多选
@@ -218,7 +210,7 @@ sino.chooseFile({
 });
 ```
 
-#### TODO   **上传文件**
+#### TODO   上传文件
 ```
 sino.uploadFile({
     nativeResourceUrls: [""], //chooseVideos获取到的
@@ -246,7 +238,7 @@ sino.previewFile({
 
 ------
 
-#### TODO    **通过界面选取一个位置**
+#### TODO    通过界面选取一个位置
 ```
 sino.chooseLocation({
     success(ret) {
@@ -257,7 +249,7 @@ sino.chooseLocation({
 });
 ```
 
-#### TODO   **直接获取当前位置**
+#### TODO   直接获取当前位置
 ```
 sino.getLocation({
     success(ret) {
@@ -268,9 +260,10 @@ sino.getLocation({
 });
 ```
 
-#### **TODO   打开地图预览**
+#### TODO   打开地图预览
 ```
 sino.getLocation({
     success(ret) {}
 });
 ```
+

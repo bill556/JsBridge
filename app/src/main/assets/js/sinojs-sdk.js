@@ -57,22 +57,27 @@
             call("config", {}, (e._complete = function () {
                 console.log("_complete config")
             }, e))
-        }, setTitle: function (e) {
+        },
+        setTitle: function (e) {
             call("setTitle", {
                 title: e.title || ""
             }, e)
-        }, backCloseWindow: function (e) {
+        },
+        backCloseWindow: function (e) {
             call("backCloseWindow", {
             }, e)
-        }, closeWindow: function (e) {
+        },
+        closeWindow: function (e) {
             call("closeWindow", {
             }, e)
-        }, putLocalStorageKV: function (e) {
+        },
+        putLocalStorageKV: function (e) {
             call("putLocalStorageKV", {
                 key: e.key || "",
                 value: e.value || ""
             }, e)
-        }, getLocalStorageKV: function (e) {
+        },
+        getLocalStorageKV: function (e) {
             call("getLocalStorageKV", {
                 key: e.key || ""
             }, e)

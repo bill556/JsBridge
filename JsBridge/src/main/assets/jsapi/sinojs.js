@@ -497,5 +497,7 @@
     if (__DL >= __LogLvl)
         __Log(__IL, 'inject exec time', (Date.now() - injectStartTime), 'ms')
 
+    //标记js注入完成
+    ___sinoJSBridge._hasInit = true
     return "inject success"
 }())
