@@ -2,21 +2,15 @@ package com.sino.jsbridge.test.x5
 
 import android.content.Context
 import android.os.Build
-import android.os.Environment
 import android.os.Looper
 import android.util.AttributeSet
-import android.util.Log
 import android.webkit.ValueCallback
 import com.sino.jsbridge.SinoJsBridge
 import com.sino.jsbridge.bridge.JavascriptInterface
 import com.sino.jsbridge.cotainer.IWebView
 import com.sino.jsbridge.cotainer.WebHelper
-import com.tencent.smtt.export.external.interfaces.WebResourceResponse
 import com.tencent.smtt.sdk.WebView
 import com.tencent.smtt.sdk.WebViewClient
-import java.io.File
-import java.io.FileInputStream
-import java.net.URI
 
 
 class X5WebView : WebView, IWebView {
@@ -30,16 +24,20 @@ class X5WebView : WebView, IWebView {
     init {
         val settings = settings
 
-        @Suppress("DEPRECATION")
         settings.javaScriptEnabled = true
 
-        //提供js-bridge层注入
-        webViewClient = InnerCustomWebViewClient()
-
+        settings.mixedContentMode = 0
+        settings.domStorageEnabled = true;// 打开本地缓存提供JS调用,至关重要
+        settings.allowFileAccess = true;
+        settings.setAppCacheEnabled(true);
+        settings.databaseEnabled = true;
         settings.userAgentString = settings.userAgentString + " sinojs/1.0.0"
         settings.allowFileAccess = true
         settings.setAllowUniversalAccessFromFileURLs(true)
         settings.setAllowFileAccessFromFileURLs(true)
+
+        //提供js-bridge层注入
+        webViewClient = InnerCustomWebViewClient()
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             setWebContentsDebuggingEnabled(true)
@@ -103,15 +101,15 @@ class X5WebView : WebView, IWebView {
         }
 
         //web页面加载资源时都会经过此方法，可以拦截特定url，返回处理过的WebResourceResponse
-        override fun shouldInterceptRequest(p0: WebView?, p1: String?): WebResourceResponse {
-            if (p1!!.startsWith("sfile://")) {
-                return WebResourceResponse("image/png", "", 200, "ok", null, FileInputStream(Environment.getExternalStorageDirectory().path + File.separator + "123.png"))
-            }
-            if (p1!!.startsWith("content://")) {
-                Log.e("shouldInterceptRequest", p1)
-                return WebResourceResponse("image/png", "", 200, "ok", null, FileInputStream(File(URI.create(p1))))
-            }
-            return super.shouldInterceptRequest(p0, p1)
-        }
+        //override fun shouldInterceptRequest(p0: WebView?, p1: String?): WebResourceResponse {
+//            if (p1!!.startsWith("sfile://")) {
+//                return WebResourceResponse("image/png", "", 200, "ok", null, FileInputStream(Environment.getExternalStorageDirectory().path + File.separator + "123.png"))
+//            }
+//            if (p1!!.startsWith("content://")) {
+//                Log.e("shouldInterceptRequest", p1)
+//                return WebResourceResponse("image/png", "", 200, "ok", null, FileInputStream(File(URI.create(p1))))
+//            }
+        //return super.shouldInterceptRequest(p0, p1)
+        // }
     }
 }
